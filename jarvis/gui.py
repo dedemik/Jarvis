@@ -167,6 +167,14 @@ class JarvisChatWindow:
             fg="#777777",
         ).grid(row=3, column=0, pady=(0, 12))
 
+    def _new_chat(self) -> None:
+        self.history.configure(state="normal")
+        self.history.delete("1.0", "end")
+        self.history.configure(state="disabled")
+        self.message_input.delete("1.0", "end")
+        self._show_welcome()
+        self.message_input.focus_set()
+
     def _show_welcome(self) -> None:
         self._append_message(
             "Jarvis",
