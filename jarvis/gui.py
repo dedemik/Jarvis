@@ -128,8 +128,8 @@ class JarvisChatWindow:
         )
         self.history.tag_configure("body", foreground="#202123")
 
-        composer = tk.Frame(chat, bg="#ffffff", padx=24, pady=(10, 8))
-        composer.grid(row=2, column=0, sticky="ew")
+        composer = tk.Frame(chat, bg="#ffffff", padx=24)
+        composer.grid(row=2, column=0, sticky="ew", pady=(10, 8))
         composer.grid_columnconfigure(0, weight=1)
 
         self.message_input = tk.Text(
