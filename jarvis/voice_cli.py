@@ -37,3 +37,7 @@ def main() -> int:
     except Exception as error:
         print(f"Jarvis: Sesli komut hatası: {error}")
         return 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
