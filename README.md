@@ -11,6 +11,7 @@ Python standart kütüphanesiyle çalışan, Türkçe komut satırı asistanı.
 │   ├── __main__.py
 │   ├── assistant.py
 │   ├── calculator.py
+│   ├── gui.py
 │   ├── notes.py
 │   ├── reminders.py
 │   ├── tasks.py
@@ -21,6 +22,7 @@ Python standart kütüphanesiyle çalışan, Türkçe komut satırı asistanı.
 │   └── test_calculator.py
 ├── install.sh
 ├── run.sh
+├── run-gui.sh
 ├── claude.md
 ├── install.md
 ├── progress.md
@@ -33,6 +35,7 @@ Python standart kütüphanesiyle çalışan, Türkçe komut satırı asistanı.
 - `reminders.py`: SQLite ile kalıcı hatırlatıcı saklama
 - `tasks.py`: SQLite ile kalıcı yapılacaklar saklama
 - `cli.py`: Terminal giriş/çıkış döngüsü
+- `gui.py`: Tkinter ile masaüstü sohbet arayüzü
 - `__main__.py`: `python3 -m jarvis` çalıştırma noktası
 - `tests/`: Asistan ve hesap makinesi testleri
 
@@ -45,6 +48,15 @@ Python 3.10 veya üzeri yeterlidir; harici paket gerekmez. Ayrıntılar için
 ./install.sh
 ./run.sh
 ```
+
+Masaüstü sohbet penceresini açmak için:
+
+```bash
+./run-gui.sh
+```
+
+Arayüz mevcut Jarvis komutlarını kullanır; LLM bağlantısı içermez. Tkinter
+kurulu değilse işletim sisteminin Python Tk paketini yüklemek gerekebilir.
 
 Komut örnekleri:
 

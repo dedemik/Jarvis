@@ -4,6 +4,7 @@
 
 - Python 3.10 veya üzeri
 - Harici Python paketi gerekmez; notlar için Python ile gelen SQLite kullanılır
+- Masaüstü arayüzü için Tkinter/Tcl-Tk kurulu olmalıdır
 
 ## Kurulum
 
@@ -25,6 +26,15 @@ dosyasındaki paketleri yükler:
 ```bash
 ./run.sh
 ```
+
+Masaüstü sohbet arayüzü için:
+
+```bash
+./run-gui.sh
+```
+
+Linux dağıtımlarında Tkinter ayrı paket olarak sunulabilir (ör. Debian/Ubuntu'da
+`python3-tk`). Terminal sürümü Tkinter gerektirmez.
 
 İstersen sanal ortamı etkinleştirip uygulamayı Python modülü olarak da
 başlatabilirsin:

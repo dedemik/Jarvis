@@ -10,6 +10,8 @@
 - [x] Kalıcı veri saklama için Python standart kütüphanesindeki SQLite seçildi.
 - [x] Hatırlatıcılar yerel `YYYY-AA-GG SS:DD` saatiyle tek seferlik olacak;
       başlangıçta ve komutlardan sonra kontrol edilecek.
+- [x] İlk arayüz masaüstü Tkinter sohbet penceresi; LLM bağlantısı sonraya
+      bırakıldı.
 
 ## Tamamlandı
 
@@ -25,6 +27,7 @@
 - [x] SQLite ile not ekleme, listeleme ve silme komutları
 - [x] SQLite ile yapılacak ekleme, listeleme, tamamlandı işaretleme ve silme
 - [x] SQLite ile hatırlatıcı ekleme, listeleme, silme ve bir kez bildirim
+- [x] Mevcut komutları kullanan ChatGPT tarzı Tkinter sohbet arayüzü
 
 ## Değerlendirme sonuçları
 
