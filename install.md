@@ -3,7 +3,8 @@
 ## Gereksinimler
 
 - Python 3.10 veya üzeri
-- Harici Python paketi gerekmez; notlar için Python ile gelen SQLite kullanılır
+- Temel CLI/GUI için harici Python paketi gerekmez; notlar için Python ile
+	gelen SQLite kullanılır
 - Masaüstü arayüzü için Tkinter/Tcl-Tk kurulu olmalıdır
 
 ## Kurulum
@@ -35,6 +36,26 @@ Masaüstü sohbet arayüzü için:
 
 Linux dağıtımlarında Tkinter ayrı paket olarak sunulabilir (ör. Debian/Ubuntu'da
 `python3-tk`). Terminal sürümü Tkinter gerektirmez.
+
+## İsteğe bağlı sesli kullanım
+
+Arch Linux'ta mikrofon ve çevrimdışı seslendirme sistem paketlerini kur:
+
+```bash
+sudo pacman -S --needed portaudio espeak-ng
+```
+
+Ardından isteğe bağlı Python paketlerini yükle ve sesli modu başlat:
+
+```bash
+./install-voice.sh
+./run-voice.sh
+```
+
+Sesli mod her komut için 5 saniye kayıt alır. Faster-Whisper'ın `base` modeli
+ilk çalıştırmada indirilir; sonraki tanıma yerel yapılır. Jarvis komutları ve
+yanıtları internet servisine gönderilmez. Sesli yanıt için kurulu bir Türkçe
+eSpeak sesi gerekir; yoksa sistemin varsayılan sesi kullanılabilir.
 
 İstersen sanal ortamı etkinleştirip uygulamayı Python modülü olarak da
 başlatabilirsin:

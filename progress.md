@@ -12,6 +12,8 @@
       başlangıçta ve komutlardan sonra kontrol edilecek.
 - [x] İlk arayüz masaüstü Tkinter sohbet penceresi; LLM bağlantısı sonraya
       bırakıldı.
+- [x] Arch Linux için isteğe bağlı yerel Türkçe sesli komut ve yanıt akışı
+  seçildi.
 
 ## Tamamlandı
 
@@ -28,6 +30,8 @@
 - [x] SQLite ile yapılacak ekleme, listeleme, tamamlandı işaretleme ve silme
 - [x] SQLite ile hatırlatıcı ekleme, listeleme, silme ve bir kez bildirim
 - [x] Mevcut komutları kullanan ChatGPT tarzı Tkinter sohbet arayüzü
+- [x] Faster-Whisper ve pyttsx3 ile isteğe bağlı sesli CLI modu
+- [x] Ses bağımlılıkları için ayrı kurulum ve başlatma betikleri
 
 ## Değerlendirme sonuçları
 
@@ -80,15 +84,13 @@
 
 ## Sonraki adımlar
 
-- [ ] Sesli kullanımın hedef işletim sistemi, Türkçe konuşma girdisi ve yanıt
-      beklentisini belirle; sonra isteğe bağlı paketleri seç
 - [ ] Yapay zekâ sağlayıcısını ve bulut/yerel çalışma tercihini belirle
 - [ ] Web araması için üçüncü taraf servis veya kendi SearXNG sunucusu tercihini
       belirle
 - [ ] Seçilen özellikleri bağımsız modüller halinde uygula ve `tests/` altında
       test et
 
-Bu değerlendirmeler teknoloji seçimine yardımcı olmak içindir; sesli kullanım,
-yapay zekâ entegrasyonu, web araması, görsel işleme veya HTTP API henüz
-uygulanmamıştır. SQLite Python standart kütüphanesinin parçasıdır; projeye yeni
-harici bağımlılık eklenmemiştir.
+Sesli mod isteğe bağlı bağımlılıklar kullanır; temel CLI/GUI kurulumu bunlara
+bağlı değildir. İlk çalıştırmada Whisper modeli indirilir. Yapay zekâ
+entegrasyonu, web araması, görsel işleme ve HTTP API henüz uygulanmamıştır.
+SQLite Python standart kütüphanesinin parçasıdır.
