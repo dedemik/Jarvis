@@ -1,0 +1,286 @@
+[1mdiff --git a/.gitignore b/.gitignore[m
+[1mindex 43ae0e2..98dbeb4 100644[m
+[1m--- a/.gitignore[m
+[1m+++ b/.gitignore[m
+[36m@@ -1,2 +1,3 @@[m
+ __pycache__/[m
+ *.py[cod][m
+[32m+[m[32m.venv/[m
+[1mdiff --git a/README.md b/README.md[m
+[1mindex bb7eac3..0ad28d7 100644[m
+[1m--- a/README.md[m
+[1m+++ b/README.md[m
+[36m@@ -1,14 +1,49 @@[m
+ # Jarvis[m
+ [m
+[31m-Türkçe komutlarla çalışan, Python standart kütüphanesini kullanan basit bir[m
+[31m-terminal asistanı.[m
+[32m+[m[32mPython standart kütüphanesiyle çalışan, Türkçe komut satırı asistanı.[m
+ [m
+[31m-## Çalıştırma[m
+[32m+[m[32m## Proje yapısı[m
+ [m
+[31m-Python 3.10 veya üzeriyle:[m
+[32m+[m[32m```text[m
+[32m+[m[32m.[m
+[32m+[m[32m├── jarvis/[m
+[32m+[m[32m│   ├── __init__.py[m
+[32m+[m[32m│   ├── __main__.py[m
+[32m+[m[32m│   ├── assistant.py[m
+[32m+[m[32m│   ├── calculator.py[m
+[32m+[m[32m│   ├── notes.py[m
+[32m+[m[32m│   ├── reminders.py[m
+[32m+[m[32m│   ├── tasks.py[m
+[32m+[m[32m│   └── cli.py[m
+[32m+[m[32m├── tests/[m
+[32m+[m[32m│   ├── __init__.py[m
+[32m+[m[32m│   ├── test_assistant.py[m
+[32m+[m[32m│   └── test_calculator.py[m
+[32m+[m[32m├── install.sh[m
+[32m+[m[32m├── run.sh[m
+[32m+[m[32m├── claude.md[m
+[32m+[m[32m├── install.md[m
+[32m+[m[32m├── progress.md[m
+[32m+[m[32m└── README.md[m
+[32m+[m[32m```[m
+[32m+[m
+[32m+[m[32m- `assistant.py`: Türkçe komutların ayrıştırılması ve yanıtlanması[m
+[32m+[m[32m- `calculator.py`: Temel matematik işlemleri[m
+[32m+[m[32m- `notes.py`: SQLite ile kalıcı not saklama[m
+[32m+[m[32m- `reminders.py`: SQLite ile kalıcı hatırlatıcı saklama[m
+[32m+[m[32m- `tasks.py`: SQLite ile kalıcı yapılacaklar saklama[m
+[32m+[m[32m- `cli.py`: Terminal giriş/çıkış döngüsü[m
+[32m+[m[32m- `__main__.py`: `python3 -m jarvis` çalıştırma noktası[m
+[32m+[m[32m- `tests/`: Asistan ve hesap makinesi testleri[m
+[32m+[m
+[32m+[m[32m## Başlatma ve kurulum[m
+[32m+[m
+[32m+[m[32mPython 3.10 veya üzeri yeterlidir; harici paket gerekmez. Ayrıntılar için[m
+[32m+[m[32m[install.md](./install.md) dosyasına bakın.[m
+ [m
+ ```bash[m
+[31m-python3 jarvis.py[m
+[32m+[m[32m./install.sh[m
+[32m+[m[32m./run.sh[m
+ ```[m
+ [m
+ Komut örnekleri:[m
+[36m@@ -17,10 +52,28 @@[m [mKomut örnekleri:[m
+ - `saat` — yerel saati gösterir[m
+ - `tarih` — bugünün tarihini gösterir[m
+ - `hesapla 12 * (3 + 2)` — temel matematik işlemlerini yapar[m
+[32m+[m[32m- `not ekle Alışveriş listesi` — yeni bir not kaydeder[m
+[32m+[m[32m- `notlar` — kayıtlı notları listeler[m
+[32m+[m[32m- `not sil 1` — numarası 1 olan notu siler[m
+[32m+[m[32m- `yapılacak ekle E-postayı yanıtla` — yeni bir yapılacak ekler[m
+[32m+[m[32m- `yapılacaklar` — yapılacakları ve durumlarını listeler[m
+[32m+[m[32m- `yapılacak tamamla 1` — numarası 1 olan işi tamamlandı işaretler[m
+[32m+[m[32m- `yapılacak sil 1` — numarası 1 olan işi siler[m
+[32m+[m[32m- `hatırlatıcı ekle 2026-11-05 10:00 Doktor randevusu` — yerel saatte hatırlatıcı kurar[m
+[32m+[m[32m- `hatırlatıcılar` — hatırlatıcıları ve bildirim durumlarını listeler[m
+[32m+[m[32m- `hatırlatıcı sil 1` — numarası 1 olan hatırlatıcıyı siler[m
+ - `çıkış` — asistanı kapatır[m
+ [m
+[32m+[m[32mNotlar, yapılacaklar ve hatırlatıcılar `~/.jarvis/jarvis.sqlite3` SQLite[m
+[32m+[m[32mveritabanında saklanır. Zamanı gelen hatırlatıcılar Jarvis başlarken ve her[m
+[32m+[m[32mkomut işlendiğinde bildirilir; Jarvis komut beklerken anında uyarı vermez.[m
+[32m+[m[32mSaat, bilgisayarın yerel saat dilimini kullanır.[m
+[32m+[m
+ ## Testler[m
+ [m
+ ```bash[m
+[31m-python3 -m unittest -v[m
+[31m-```[m
+\ No newline at end of file[m
+[32m+[m[32mpython3 -m unittest discover -s tests -v[m
+[32m+[m[32m```[m
+[32m+[m
+[32m+[m[32mGeliştirme notları [claude.md](./claude.md), ilerleme ve sonraki adımlar[m
+[32m+[m[32m[progress.md](./progress.md) içindedir.[m
+\ No newline at end of file[m
+[1mdiff --git a/jarvis.py b/jarvis.py[m
+[1mdeleted file mode 100644[m
+[1mindex bc4ef51..0000000[m
+[1m--- a/jarvis.py[m
+[1m+++ /dev/null[m
+[36m@@ -1,114 +0,0 @@[m
+[31m-import ast[m
+[31m-import math[m
+[31m-import operator[m
+[31m-import unicodedata[m
+[31m-from datetime import datetime[m
+[31m-[m
+[31m-[m
+[31m-_BINARY_OPERATORS = {[m
+[31m-    ast.Add: operator.add,[m
+[31m-    ast.Sub: operator.sub,[m
+[31m-    ast.Mult: operator.mul,[m
+[31m-    ast.Div: operator.truediv,[m
+[31m-    ast.FloorDiv: operator.floordiv,[m
+[31m-    ast.Mod: operator.mod,[m
+[31m-    ast.Pow: operator.pow,[m
+[31m-}[m
+[31m-_UNARY_OPERATORS = {[m
+[31m-    ast.UAdd: operator.pos,[m
+[31m-    ast.USub: operator.neg,[m
+[31m-}[m
+[31m-[m
+[31m-[m
+[31m-def calculate(expression: str) -> int | float:[m
+[31m-    """Evaluate basic arithmetic without allowing arbitrary Python execution."""[m
+[31m-    if not expression.strip() or len(expression) > 100:[m
+[31m-        raise ValueError("İşlem boş olamaz ve en fazla 100 karakter olabilir.")[m
+[31m-[m
+[31m-    try:[m
+[31m-        tree = ast.parse(expression, mode="eval")[m
+[31m-    except SyntaxError as error:[m
+[31m-        raise ValueError("İşlem biçimini anlayamadım.") from error[m
+[31m-[m
+[31m-    if sum(1 for _ in ast.walk(tree)) > 32:[m
+[31m-        raise ValueError("İşlem çok uzun.")[m
+[31m-[m
+[31m-    def evaluate(node: ast.AST) -> int | float:[m
+[31m-        if isinstance(node, ast.Expression):[m
+[31m-            return evaluate(node.body)[m
+[31m-        if isinstance(node, ast.Constant) and type(node.value) in (int, float):[m
+[31m-            return node.value[m
+[31m-        if isinstance(node, ast.BinOp) and type(node.op) in _BINARY_OPERATORS:[m
+[31m-            left = evaluate(node.left)[m
+[31m-            right = evaluate(node.right)[m
+[31m-            if isinstance(node.op, ast.Pow) and abs(right) > 10:[m
+[31m-                raise ValueError("Üs değeri -10 ile 10 arasında olmalı.")[m
+[31m-            result = _BINARY_OPERATORS[type(node.op)](left, right)[m
+[31m-            if not math.isfinite(result) or abs(result) > 1e100:[m
+[31m-                raise ValueError("Sonuç izin verilen sınırın dışında.")[m
+[31m-            return result[m
+[31m-        if isinstance(node, ast.UnaryOp) and type(node.op) in _UNARY_OPERATORS:[m
+[31m-            return _UNARY_OPERATORS[type(node.op)](evaluate(node.operand))[m
+[31m-        raise ValueError("Yalnızca sayılar ve temel matematik işlemleri kullanılabilir.")[m
+[31m-[m
+[31m-    try:[m
+[31m-        return evaluate(tree)[m
+[31m-    except (ArithmeticError, OverflowError) as error:[m
+[31m-        raise ValueError("Bu işlem hesaplanamıyor.") from error[m
+[31m-[m
+[31m-[m
+[31m-class JarvisAssistant:[m
+[31m-    def handle_command(self, command: str) -> tuple[str, bool]:[m
+[31m-        normalized = unicodedata.normalize("NFKC", command).strip().casefold()[m
+[31m-        normalized = normalized.translate(str.maketrans("ıçşğüö", "icsguo"))[m
+[31m-[m
+[31m-        if normalized in {"", "merhaba", "selam", "hey jarvis"}:[m
+[31m-            return "Merhaba! Sana nasıl yardımcı olabilirim?", True[m
+[31m-        if normalized in {"yardim", "komutlar", "ne yapabilirsin"}:[m
+[31m-            return ([m
+[31m-                "Kullanabileceğin komutlar:\n"[m
+[31m-                "  saat       - Saati gösterir\n"[m
+[31m-                "  tarih      - Tarihi gösterir\n"[m
+[31m-                "  hesapla    - Örnek: hesapla 12 * (3 + 2)\n"[m
+[31m-                "  yardım     - Bu komutları gösterir\n"[m
+[31m-                "  çıkış      - Asistanı kapatır",[m
+[31m-                True,[m
+[31m-            )[m
+[31m-        if normalized in {"saat", "saat kac"}:[m
+[31m-            return f"Saat: {datetime.now().astimezone().strftime('%H:%M')}", True[m
+[31m-        if normalized in {"tarih", "bugun tarih ne", "bugunun tarihi"}:[m
+[31m-            return f"Tarih: {datetime.now().astimezone().strftime('%d.%m.%Y')}", True[m
+[31m-        if normalized.startswith("hesapla"):[m
+[31m-            expression = normalized[len("hesapla"):].lstrip(" :")[m
+[31m-            try:[m
+[31m-                return f"Sonuç: {calculate(expression)}", True[m
+[31m-            except ValueError as error:[m
+[31m-                return str(error), True[m
+[31m-        if normalized in {"cik", "cikis", "kapat", "gorusuruz"}:[m
+[31m-            return "Görüşürüz!", False[m
+[31m-[m
+[31m-        return ([m
+[31m-            "Bu komutu tanıyamadım. Kullanılabilir komutları görmek için 'yardım' yaz.",[m
+[31m-            True,[m
+[31m-        )[m
+[31m-[m
+[31m-[m
+[31m-def main() -> None:[m
+[31m-    assistant = JarvisAssistant()[m
+[31m-    print("Jarvis hazır. Yardım için 'yardım' yaz, çıkmak için 'çıkış' yaz.")[m
+[31m-[m
+[31m-    while True:[m
+[31m-        try:[m
+[31m-            command = input("Sen: ")[m
+[31m-        except (EOFError, KeyboardInterrupt):[m
+[31m-            print("\nJarvis: Görüşürüz!")[m
+[31m-            break[m
+[31m-[m
+[31m-        response, keep_running = assistant.handle_command(command)[m
+[31m-        print(f"Jarvis: {response}")[m
+[31m-        if not keep_running:[m
+[31m-            break[m
+[31m-[m
+[31m-[m
+[31m-if __name__ == "__main__":[m
+[31m-    main()[m
+[1mdiff --git a/test_jarvis.py b/test_jarvis.py[m
+[1mdeleted file mode 100644[m
+[1mindex 67a29a0..0000000[m
+[1m--- a/test_jarvis.py[m
+[1m+++ /dev/null[m
+[36m@@ -1,60 +0,0 @@[m
+[31m-import unittest[m
+[31m-from unittest.mock import patch[m
+[31m-from datetime import datetime[m
+[31m-[m
+[31m-from jarvis import JarvisAssistant, calculate[m
+[31m-[m
+[31m-[m
+[31m-class CalculateTests(unittest.TestCase):[m
+[31m-    def test_calculates_arithmetic_with_precedence(self):[m
+[31m-        self.assertEqual(calculate("12 * (3 + 2)"), 60)[m
+[31m-        self.assertEqual(calculate("-4 + 2 ** 3"), 4)[m
+[31m-[m
+[31m-    def test_rejects_code_and_unsupported_operations(self):[m
+[31m-        for expression in ("__import__('os')", "2 ** 11", "1 < 2", ""):[m
+[31m-            with self.subTest(expression=expression):[m
+[31m-                with self.assertRaises(ValueError):[m
+[31m-                    calculate(expression)[m
+[31m-[m
+[31m-    def test_reports_division_by_zero(self):[m
+[31m-        with self.assertRaisesRegex(ValueError, "hesaplanamıyor"):[m
+[31m-            calculate("1 / 0")[m
+[31m-[m
+[31m-[m
+[31m-class AssistantTests(unittest.TestCase):[m
+[31m-    def setUp(self):[m
+[31m-        self.assistant = JarvisAssistant()[m
+[31m-[m
+[31m-    def test_help_is_available_with_turkish_characters(self):[m
+[31m-        response, keep_running = self.assistant.handle_command("YARDIM")[m
+[31m-        self.assertIn("hesapla", response)[m
+[31m-        self.assertTrue(keep_running)[m
+[31m-[m
+[31m-    def test_calculator_command(self):[m
+[31m-        self.assertEqual([m
+[31m-            self.assistant.handle_command("Hesapla: 6 / 2"),[m
+[31m-            ("Sonuç: 3.0", True),[m
+[31m-        )[m
+[31m-[m
+[31m-    def test_time_and_date_commands(self):[m
+[31m-        fixed_time = datetime(2026, 11, 3, 14, 5).astimezone()[m
+[31m-        with patch("jarvis.datetime") as mocked_datetime:[m
+[31m-            mocked_datetime.now.return_value.astimezone.return_value = fixed_time[m
+[31m-            self.assertEqual([m
+[31m-                self.assistant.handle_command("saat"),[m
+[31m-                ("Saat: 14:05", True),[m
+[31m-            )[m
+[31m-            self.assertEqual([m
+[31m-                self.assistant.handle_command("tarih"),[m
+[31m-                ("Tarih: 03.11.2026", True),[m
+[31m-            )[m
+[31m-[m
+[31m-    def test_exit_command_stops_assistant(self):[m
+[31m-        self.assertEqual([m
+[31m-            self.assistant.handle_command("Çıkış"),[m
+[31m-            ("Görüşürüz!", False),[m
+[31m-        )[m
+[31m-[m
+[31m-[m
+[31m-if __name__ == "__main__":[m
+[31m-    unittest.main()[m
